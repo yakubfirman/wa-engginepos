@@ -1,0 +1,42 @@
+appId: com.greenpos.waengine
+productName: WA Engine
+copyright: Copyright © 2024 Yakub Firman Mustofa
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - "!node_modules/**/*"
+  - node_modules/**/*
+
+asar: true
+asarUnpack:
+  - "**/*.node"
+  - "**/node_modules/@whatsapp-web-js/**/*"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: build/icon.ico
+  artifactName: "${productName}-Setup-${version}.${ext}"
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: WA Engine
+  runAfterFinish: true
+
+extraMetadata:
+  main: dist-electron/main.js
